@@ -1,6 +1,12 @@
 #pragma once
 
 #define PIN_SENSOR 13
+#define PIN_MAIN 11
+#define PIN_SECOND 12
+
+enum class output {
+    MAIN, SECOND
+};
 
 struct Settings {
     struct Temps {
@@ -21,4 +27,10 @@ struct Settings {
     Temps temps;
     Day day;
 
+};
+
+struct Time {
+    unsigned int hour;
+    unsigned int minute;  
+    Time(unsigned int h, unsigned int m) : hour(h), minute(m) {};
 };
