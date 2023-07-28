@@ -1,41 +1,33 @@
 #include <RTClib.h>
 #include <LiquidCrystal_I2C.h>
-#include <OneWire.h>
-#include <DallasTemperature.h>
 #include <avr/wdt.h>
+#include "src/sensors.h"
+#include "src/definitions.h"
 
-#define PIN_SENSOR 13
-
-
-// Sensors
-OneWire oneWire(PIN_SENSOR);
-DallasTemperature sensors(&oneWire);
-DeviceAddress sens_main; // sens_second;
-
-
-struct Temp { // used as temporary object to get current temperatures
-    float main;
-    Temp() {
-        sensors.requestTemperatures();
-        main = sensors.getTempC(sens_main);
-    }  
-};
-
-
-void setup_sensors() {
-    sensors.begin();
-    sensors.getAddress(sens_main, 0);
-}
-
+Settings settings;
 
 void setup() {
     Serial.begin(9600);
     setup_sensors();
-
     Serial.println("Setup complete");
 }
 
 void loop() {
-    Serial.println(Temp().main);
+    
+
     delay(3000);
+}
+
+void control_output() {
+    if (true) { // day
+        if (Temp().main < settings.temps.main_day); // output main on
+        else; // output second off
+        if (Temp().second < settings.temps.second_day); // output second on
+        else; // output second off
+    } else {
+        if (Temp().main < settings.temps.main_night); // output main on
+        else; // output main off
+        if (Temp().second < settings.temps.second_night); // output second on
+        else; // output second off
+    } 
 }
