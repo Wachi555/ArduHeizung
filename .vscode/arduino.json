@@ -1,0 +1,6 @@
+{
+    "board": "arduino:avr:uno",
+    "sketch": "ArduHeizung.ino",
+    "output": "../ArduOutput",
+    "port": "COM4"
+}
