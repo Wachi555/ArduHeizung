@@ -17,9 +17,7 @@ Time get_time() {
 
 bool isDay() {
     Time time = get_time();
-    if (time.hour >= settings.day.begin && time.hour < settings.day.end)
-        return true;
-    return false;
+    return time.hour >= settings.day.begin && time.hour < settings.day.end;
 }
 
 void setup_pins() {
