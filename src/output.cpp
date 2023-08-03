@@ -5,15 +5,27 @@
 #include "Arduino.h"
 
 extern Settings settings;
-
+extern State state;
 
 void set_output(output o, bool value) {
     if (o == output::MAIN) {
-        if (value) digitalWrite(PIN_MAIN, LOW);
-        else digitalWrite(PIN_MAIN, HIGH);
+        if (value) {
+            digitalWrite(PIN_MAIN, LOW);
+            state.output_main = true;
+        }
+        else {
+            digitalWrite(PIN_MAIN, HIGH);
+            state.output_main = false;
+        }
     } else if (o == output::SECOND) {
-        if (value) digitalWrite(PIN_SECOND, LOW);
-        else digitalWrite(PIN_SECOND, HIGH);
+        if (value) {
+            digitalWrite(PIN_SECOND, LOW);
+            state.output_second = true;
+        }
+        else {
+            digitalWrite(PIN_SECOND, HIGH);
+            state.output_second = false;
+        }
     }
 }
 
