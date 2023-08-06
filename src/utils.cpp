@@ -31,22 +31,24 @@ void setup_pins() {
     pinMode(PIN_ENTER, INPUT_PULLUP);
 }
 
-void loop_input() {
+void loop_input(Timer &t) {
     static int inc_test = 0;
     if (digitalRead(PIN_UP) == LOW) {
         if (digitalRead(PIN_DOWN) == LOW) {
             // +
             inc_test++;
+            t.restart();
         } else {
             // -
             inc_test--;
+            t.restart();
         }
         Serial.print(inc_test);
         delay(50); // debounce
     }
     if (digitalRead(PIN_ENTER) == LOW) {
         Serial.print("Enter");
-        
+        t.restart();
         while (digitalRead(PIN_ENTER) == LOW); // blocks until button isn't pressed -> one execution
         delay(50); // debounce
     }

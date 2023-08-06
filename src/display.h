@@ -22,6 +22,10 @@ class Display {
     void print_menu(String s[]);
 
     void reset();
+
+    void switch_on();
+
+    void switch_off();
     
 };
 

@@ -20,12 +20,20 @@ void setup() {
 }
 
 void loop() {
-    static Timer display_t(3, true);
-    if(!display_t()) {
+    static Timer update_t(5, true);
+    static Timer display_t(10);
+
+    loop_input(display_t);
+
+    if (!display_t()) {
+        display.switch_off();
+        return;
+    }
+    display.switch_on();
+
+    if (!update_t()) {
         serial_output();
         control_output();
         loop_display(display);
     }
-    loop_input();
-    
 }

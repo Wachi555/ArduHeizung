@@ -54,6 +54,14 @@ void Display::reset() {
     line = 0;
 }
 
+void Display::switch_on() {
+    lcd.backlight();
+}
+
+void Display::switch_off() {
+    lcd.noBacklight();
+}
+
 void loop_display(Display &d) {
     d.reset();
 
