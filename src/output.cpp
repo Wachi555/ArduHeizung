@@ -30,7 +30,7 @@ void set_output(output o, bool value) {
 }
 
 void control_output() {
-    if (true) { // day // isDay()
+    if (isDay()) {
         
         if (Temp().main < settings.temps.main_day) set_output(output::MAIN, true); // output main on
         else if (Temp().main > settings.temps.main_day + settings.temps.hystereisis)

@@ -5,8 +5,6 @@
 
 // #include <string.h>
 
-extern State state;
-
 Display::Display() : lcd(0x27, 20, 4) {}
 
 void Display::setup() {
@@ -55,14 +53,16 @@ void Display::reset() {
 }
 
 void Display::switch_on() {
+    on = true;
     lcd.backlight();
 }
 
 void Display::switch_off() {
+    on = false;
     lcd.noBacklight();
 }
 
-void loop_display(Display &d) {
+void loop_display(Display &d, State &state) {
     d.reset();
 
     d.println("Main:");

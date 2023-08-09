@@ -10,6 +10,7 @@ class Display {
     
     public:
     String content[4];
+    bool on = true;
 
     Display();
 
@@ -29,4 +30,4 @@ class Display {
     
 };
 
-void loop_display(Display &d);
+void loop_display(Display &d, State &state);

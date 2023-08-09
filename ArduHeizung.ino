@@ -7,8 +7,6 @@
 
 Settings settings;
 Display display;
-State state;
-
 
 void setup() {
     Serial.begin(9600);
@@ -22,11 +20,12 @@ void setup() {
 void loop() {
     static Timer update_t(5, true);
     static Timer display_t(10);
+    static State state;
 
     loop_input(display_t);
 
     if (!display_t()) {
-        display.switch_off();
+        if (display.on) display.switch_off();
         return;
     }
     display.switch_on();
@@ -34,6 +33,6 @@ void loop() {
     if (!update_t()) {
         serial_output();
         control_output();
-        loop_display(display);
+        loop_display(display, state);
     }
 }
